@@ -8,6 +8,7 @@ import os
 baseurl = "https://api.ciscospark.com/v1"
 
 bot_auth_token = os.environ.get("SPARK_ACCESS_TOKEN")
+port = os.environ.get("PORT")
 bot_auth_token = "ZmU1NGIxNGItMGYxOC00ZWQxLWJjOGUtNzI0MzkzZjllOGMyMDkzZjJkZjctYjVh_PF84_55609b58-8953-4e48-a3e4-f03e857c3ac6"
 
 if (bot_auth_token == '' or 
@@ -114,4 +115,4 @@ def ban_hook():
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0",port=int("80"))
+    app.run(host="0.0.0.0",port=int(port))
