@@ -1,1 +1,1 @@
-web: python3 sunrisesunset.py
+web: python sunrisesunset.py
