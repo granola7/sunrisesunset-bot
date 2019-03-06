@@ -87,7 +87,7 @@ def hook_1():
     print(mess_content)
     geodata = requests.get("https://api.opencagedata.com/geocode/v1/json?key=" + opencage_key + "&q=" + mess_content)
     print(json.loads(geodata.text)['results'])
-    print(json.loads(geodata.text)['results'][0]['annotations']['sun']['rise']['apparent'])
+    print(json.loads(geodata.text)['results'][0]['annotations']['sun']['set']['apparent'])
     tz = json.loads(geodata.text)['results'][0]['annotations']['timezone']['name']
     print(json.loads(geodata.text)['results'][0]['components'])
     send = send_message(mess_room, "Got it. Your timezone is " + tz)
