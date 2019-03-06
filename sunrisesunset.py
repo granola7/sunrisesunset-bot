@@ -9,6 +9,7 @@ baseurl = "https://api.ciscospark.com/v1"
 
 bot_auth_token = os.environ.get("SPARK_ACCESS_TOKEN")
 port = os.environ.get("PORT")
+opencage_key = os.environ.get("OPENCAGE_API_KEY")
 #bot_auth_token = "ZmU1NGIxNGItMGYxOC00ZWQxLWJjOGUtNzI0MzkzZjllOGMyMDkzZjJkZjctYjVh_PF84_55609b58-8953-4e48-a3e4-f03e857c3ac6"
 
 if (bot_auth_token == '' or 
@@ -76,13 +77,16 @@ def rock_ban(mem_id):
 
 
 @app.route('/hook1', methods=['POST'])
-def ban_hook():
+def hook_1():
     spark_hook = request.json
     hook_data = spark_hook["data"]
     # Make sure this isn't a message previously posted by this bot's id
     if hook_data["personId"] == bot_id:
         return "OK"
     mess_room, mess_content = get_message(hook_data)
+    print(mess_content)
+    geodata = requests.get("https://api.opencagedata.com/geocode/v1/json?key=" + opencage_key + "&q=" + mess_content)
+    print(geodata)
     mess_list = mess_content.split()
     print(mess_list)
     if len(mess_list) >= 3 and mess_list[1] == "/ban":
