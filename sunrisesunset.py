@@ -87,34 +87,9 @@ def hook_1():
     print(mess_content)
     geodata = requests.get("https://api.opencagedata.com/geocode/v1/json?key=" + opencage_key + "&q=" + mess_content)
     print(json.loads(geodata.text)['results'])
-    mess_list = mess_content.split()
-    print(mess_list)
-    if len(mess_list) >= 3 and mess_list[1] == "/ban":
-        mem_id = get_membership(mess_room, mess_list[2])
-        print(mem_id)
-        if mem_id is None:
-            print("E-mail address not valid, user is not in this room!!!")
-            print("We didn't end up banning anyone, DOH!")
-            send = send_message(mess_room, "I can exile anyone, just say the "
-                                "word.  But they have to actually be in a room"
-                                ",  and I have to be the moderator :-)")
-            print(send)
-        else:
-            banned_for_life = rock_ban(mem_id)
-            if banned_for_life.status_code == 204:
-                print("We banned that jerk %s" % mess_list[2])
-            else:
-                print("I don't think we banned them, "
-                      "well this is embarrassing...")
-            send = send_message(mess_room, "%s is now banned!" % mess_list[2])
-            print(send)
-    else:
-        print("We didn't end up banning anyone, DOH!")
-        send = send_message(mess_room,
-                            "I can exile anyone, just say the word.  But they "
-                            "have to actually be in a room, and I have to be "
-                            "the moderator :-)")
-        print(send)
+    print(json.loads(geodata.text)['results']['sun'])
+    print(json.loads(geodata.text)['results']['timezone']['name'])
+    send = send_message(mess_room, "Got it")
     return json.dumps({"did-it-work": "A-OK"})
 
 
