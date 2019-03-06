@@ -90,7 +90,7 @@ def hook_1():
     print(json.loads(geodata.text)['results'][0]['annotations'])
     tz = json.loads(geodata.text)['results'][0]['annotations']['timezone']['name']
     print(json.loads(geodata.text)['results'][0]['components'])
-    send = send_message(mess_room, "Got it. Your timezone is " tz)
+    send = send_message(mess_room, "Got it. Your timezone is " + tz)
     return json.dumps({"did-it-work": "A-OK"})
 
 
