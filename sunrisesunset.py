@@ -84,9 +84,13 @@ def hook_1():
     tz = json.loads(geodata.text)['results'][0]['annotations']['timezone']['short_name']
 #    city = json.loads(geodata.text)['results'][0]['components']['city']
     print(json.loads(geodata.text)['results'][0]['components'])
-    send = send_message(mess_room, "Got it. Sunrise is " +
+    print(sunrise)
+    print(sunset)
+    print(offset)
+    print(tz)
+    send = send_message(mess_room, "Sunrise: " +
                         datetime.utcfromtimestamp(sunrise+offset).strftime("%I:%M%p ") + tz +
-                        ".\nSunset is " +
+                        ".\nSunset: " +
                         datetime.utcfromtimestamp(sunset+offset).strftime("%I:%M%p ") + tz + "."
     )
     return json.dumps({"did-it-work": "A-OK"})
