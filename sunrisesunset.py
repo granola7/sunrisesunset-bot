@@ -8,7 +8,7 @@ import os
 baseurl = "https://api.ciscospark.com/v1"
 
 bot_auth_token = os.environ.get("SPARK_ACCESS_TOKEN")
-port = os.environ.get("PORT")
+port = int(os.environ.get("PORT"))
 opencage_key = os.environ.get("OPENCAGE_API_KEY")
 #bot_auth_token = "ZmU1NGIxNGItMGYxOC00ZWQxLWJjOGUtNzI0MzkzZjllOGMyMDkzZjJkZjctYjVh_PF84_55609b58-8953-4e48-a3e4-f03e857c3ac6"
 
@@ -87,7 +87,7 @@ def hook_1():
     print(mess_content)
     geodata = requests.get("https://api.opencagedata.com/geocode/v1/json?key=" + opencage_key + "&q=" + mess_content)
     print(json.loads(geodata.text)['results'])
-#    print(json.loads(geodata.text)['results']['annotations'])
+    print(json.loads(geodata.text)['results'][0]['annotations'])
 #    print(json.loads(geodata.text)['results']['annotations']['timezone']['name'])
 #    print(json.loads(geodata.text)['results']['components'])
     send = send_message(mess_room, "Got it")
@@ -95,4 +95,4 @@ def hook_1():
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0",port=int(port))
+    app.run(host="0.0.0.0",port=port)
