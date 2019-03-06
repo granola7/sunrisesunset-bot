@@ -1,6 +1,5 @@
-# Completed working version
-
 from flask import Flask, request
+from datetime import datetime
 import requests
 import json
 import os
@@ -10,7 +9,6 @@ baseurl = "https://api.ciscospark.com/v1"
 bot_auth_token = os.environ.get("SPARK_ACCESS_TOKEN")
 port = os.environ.get("PORT")
 opencage_key = os.environ.get("OPENCAGE_API_KEY")
-#bot_auth_token = "ZmU1NGIxNGItMGYxOC00ZWQxLWJjOGUtNzI0MzkzZjllOGMyMDkzZjJkZjctYjVh_PF84_55609b58-8953-4e48-a3e4-f03e857c3ac6"
 
 if (bot_auth_token == '' or 
     bot_auth_token == "PASTE YOUR BOT ACCESS TOKEN HERE"):
@@ -67,13 +65,6 @@ def get_membership(room, email):
     else:
         get_mem_id = json.loads(get_mem_resp.text)["items"][0]["id"]
     return get_mem_id
-
-
-def rock_ban(mem_id):
-    del_mem_api = "/memberships/%s" % mem_id
-    ban_url = baseurl + del_mem_api
-    ban_resp = requests.delete(ban_url, headers=headers)
-    return ban_resp
 
 
 @app.route('/hook1', methods=['POST'])
