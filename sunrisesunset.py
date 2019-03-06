@@ -8,7 +8,7 @@ import os
 baseurl = "https://api.ciscospark.com/v1"
 
 bot_auth_token = os.environ.get("SPARK_ACCESS_TOKEN")
-port = int(os.environ.get("PORT"))
+port = os.environ.get("PORT")
 opencage_key = os.environ.get("OPENCAGE_API_KEY")
 #bot_auth_token = "ZmU1NGIxNGItMGYxOC00ZWQxLWJjOGUtNzI0MzkzZjllOGMyMDkzZjJkZjctYjVh_PF84_55609b58-8953-4e48-a3e4-f03e857c3ac6"
 
