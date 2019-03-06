@@ -27,16 +27,6 @@ bot_id = json.loads(me_resp.text)['id']  # Retrieve / extract the bot's user ID
 app = Flask(__name__)
 
 
-def get_message(data):
-    mess_id = data['id']
-    mess_api = "/messages/%s" % mess_id
-    mess_url = baseurl + mess_api
-    mess_resp = requests.get(mess_url, headers=headers)
-    mess_content = json.loads(mess_resp.text)['text']
-    mess_room = json.loads(mess_resp.text)['roomId']
-    return mess_room, mess_content
-
-
 def send_message(room, text):
     send_api = "/messages"
     send_url = baseurl + send_api
@@ -47,24 +37,6 @@ def send_message(room, text):
                               headers=headers,
                               json=send_data)
     return send_resp
-
-
-def get_membership(room, email):
-    get_mem_api = "/memberships"
-    get_mem_param = {"roomId": room,
-                     "personEmail": email
-                     }
-    get_mem_url = baseurl + get_mem_api
-    get_mem_resp = requests.get(get_mem_url,
-                                params=get_mem_param,
-                                headers=headers)
-    print(get_mem_resp)
-    if (get_mem_resp.status_code != 200 or
-            json.loads(get_mem_resp.text)["items"] == []):
-        get_mem_id = None
-    else:
-        get_mem_id = json.loads(get_mem_resp.text)["items"][0]["id"]
-    return get_mem_id
 
 
 @app.route('/hook1', methods=['POST'])
@@ -89,7 +61,7 @@ def hook_1():
                         "\nSunset: " +
                         datetime.utcfromtimestamp(sunset+offset).strftime("%I:%M%p ") + tz
     )
-    return
+    return 200
 
 
 if __name__ == '__main__':
