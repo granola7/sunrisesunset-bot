@@ -9,7 +9,7 @@ baseurl = "https://api.ciscospark.com/v1"
 
 bot_auth_token = os.environ.get("SPARK_ACCESS_TOKEN")
 port = os.environ.get("PORT")
-bot_auth_token = "ZmU1NGIxNGItMGYxOC00ZWQxLWJjOGUtNzI0MzkzZjllOGMyMDkzZjJkZjctYjVh_PF84_55609b58-8953-4e48-a3e4-f03e857c3ac6"
+#bot_auth_token = "ZmU1NGIxNGItMGYxOC00ZWQxLWJjOGUtNzI0MzkzZjllOGMyMDkzZjJkZjctYjVh_PF84_55609b58-8953-4e48-a3e4-f03e857c3ac6"
 
 if (bot_auth_token == '' or 
     bot_auth_token == "PASTE YOUR BOT ACCESS TOKEN HERE"):
@@ -75,7 +75,7 @@ def rock_ban(mem_id):
     return ban_resp
 
 
-@app.route('/ban/this/guy', methods=['POST'])
+@app.route('/hook1', methods=['POST'])
 def ban_hook():
     spark_hook = request.json
     hook_data = spark_hook["data"]
