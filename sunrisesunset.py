@@ -86,6 +86,7 @@ def hook_1():
     mess_room, mess_content = get_message(hook_data)
     print(mess_content)
     geodata = requests.get("https://api.opencagedata.com/geocode/v1/json?key=" + opencage_key + "&q=" + mess_content)
+    print("https://api.opencagedata.com/geocode/v1/json?key=" + opencage_key + "&q=" + mess_content)
     print(geodata)
     mess_list = mess_content.split()
     print(mess_list)
