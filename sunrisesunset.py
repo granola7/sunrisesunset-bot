@@ -71,7 +71,7 @@ def hook_1():
                         "\nSunset: " +
                         datetime.utcfromtimestamp(sunset+offset).strftime("%I:%M%p ") + tz
     )
-    return 200
+    return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
 
 
 if __name__ == '__main__':
