@@ -27,6 +27,16 @@ bot_id = json.loads(me_resp.text)['id']  # Retrieve / extract the bot's user ID
 app = Flask(__name__)
 
 
+def get_message(data):
+    mess_id = data['id']
+    mess_api = "/messages/%s" % mess_id
+    mess_url = baseurl + mess_api
+    mess_resp = requests.get(mess_url, headers=headers)
+    mess_content = json.loads(mess_resp.text)['text']
+    mess_room = json.loads(mess_resp.text)['roomId']
+    return mess_room, mess_content
+
+
 def send_message(room, text):
     send_api = "/messages"
     send_url = baseurl + send_api
